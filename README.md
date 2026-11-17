@@ -30,4 +30,12 @@ Kinetic UI was installed as a Codex skill in `~/.codex/skills/kinetic-ui` and is
 
 ## Deployment
 
-Pushing to `main` runs `.github/workflows/deploy.yml`, builds the portfolio with Node.js 24, and deploys `dist/` to GitHub Pages. GitHub repository Settings → Pages must use **GitHub Actions** as the source. Relative asset paths in `vite.config.js` also support other static hosting providers.
+Source lives on `main`. The built static site lives on `gh-pages`, with `.nojekyll`. GitHub repository Settings → Pages uses **Deploy from a branch**, branch **gh-pages**, directory **/ (root)**. Relative asset paths in `vite.config.js` also support other static hosting providers.
+
+To publish an update from an authenticated Git checkout:
+
+```sh
+npm run deploy
+```
+
+This builds locally, updates the existing `gh-pages` branch without force-pushing, and keeps source and generated assets separate. Custom GitHub Actions builds were unavailable at setup because GitHub reported an account billing lock, so deployment uses the static branch instead.
